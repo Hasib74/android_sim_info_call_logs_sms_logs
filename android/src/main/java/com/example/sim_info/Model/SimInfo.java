@@ -1,4 +1,4 @@
-package com.example.sim_info;
+package com.example.sim_sms_call_info;
 import java.util.List;
 
 public class SimInfo {

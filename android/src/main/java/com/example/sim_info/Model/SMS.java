@@ -1,4 +1,4 @@
-package com.example.sim_info.Model;
+package com.example.sim_sms_call_info.Model;
 public class SMS {
 
 

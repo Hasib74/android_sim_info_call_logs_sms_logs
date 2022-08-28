@@ -1,11 +1,11 @@
-package com.example.sim_info;
+package com.example.sim_sms_call_info;
 
 import static android.Manifest.permission.READ_PHONE_NUMBERS;
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static android.Manifest.permission.READ_SMS;
 import static android.content.Context.TELEPHONY_SUBSCRIPTION_SERVICE;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
-import static android.src.main.java.com.example.sim_info.ChannelName.ChannelName.CHANNEL_SIM_INFO;
+import static android.src.main.java.com.example.sim_sms_call_info.ChannelName.ChannelName.CHANNEL_sim_sms_call_info;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -44,8 +44,8 @@ import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.example.sim_info.Model.SMS;
-import com.example.sim_info.Model.SmsModel;
+import com.example.sim_sms_call_info.Model.SMS;
+import com.example.sim_sms_call_info.Model.SmsModel;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -92,7 +92,7 @@ public class SimInfoPlugin extends Activity implements FlutterPlugin, MethodCall
 //        if (context instanceof AppCompatActivity)
 //            this.activity = (AppCompatActivity) context;
 
-        channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), CHANNEL_SIM_INFO);
+        channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), CHANNEL_sim_sms_call_info);
         channel.setMethodCallHandler(this);
     }
 
@@ -106,7 +106,7 @@ public class SimInfoPlugin extends Activity implements FlutterPlugin, MethodCall
 
         if (call.method.equals("getPlatformVersion")) {
             result.success("Android " + android.os.Build.VERSION.RELEASE);
-        } else if (call.method.equals(android.src.main.java.com.example.sim_info.ChannelName.ChannelName.METHOD_SIM_INFO)) {
+        } else if (call.method.equals(android.src.main.java.com.example.sim_sms_call_info.ChannelName.ChannelName.METHOD_sim_sms_call_info)) {
 
 
             Handler handler = new Handler();
@@ -133,7 +133,7 @@ public class SimInfoPlugin extends Activity implements FlutterPlugin, MethodCall
 
             ;
 
-        } else if (call.method.equals(android.src.main.java.com.example.sim_info.ChannelName.ChannelName.METHOD_SMS_INFO)) {
+        } else if (call.method.equals(android.src.main.java.com.example.sim_sms_call_info.ChannelName.ChannelName.METHOD_SMS_INFO)) {
 
 
             Handler handler = new Handler();
@@ -290,7 +290,7 @@ public class SimInfoPlugin extends Activity implements FlutterPlugin, MethodCall
     private String getSimInfo() {
 
         //requestPermission();
-        com.example.sim_info.SimInfo simInfo = new com.example.sim_info.SimInfo();
+        com.example.sim_sms_call_info.SimInfo simInfo = new com.example.sim_sms_call_info.SimInfo();
 
 
         List<SubscriptionInfo> _subscriptionInfo = null;
@@ -299,11 +299,11 @@ public class SimInfoPlugin extends Activity implements FlutterPlugin, MethodCall
         }
 
 
-        List<com.example.sim_info.SubscriptionId> subscriptionIdsList = new ArrayList<>();
+        List<com.example.sim_sms_call_info.SubscriptionId> subscriptionIdsList = new ArrayList<>();
 
         for (SubscriptionInfo subscriptionInfo : _subscriptionInfo) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-                subscriptionIdsList.add(new com.example.sim_info.SubscriptionId(_subscriptionInfo.indexOf(subscriptionInfo), subscriptionInfo.getSubscriptionId()));
+                subscriptionIdsList.add(new com.example.sim_sms_call_info.SubscriptionId(_subscriptionInfo.indexOf(subscriptionInfo), subscriptionInfo.getSubscriptionId()));
             }
         }
 
@@ -311,12 +311,12 @@ public class SimInfoPlugin extends Activity implements FlutterPlugin, MethodCall
 
         TelecomManager tm2 = (TelecomManager) context.getSystemService(Context.TELECOM_SERVICE);
 
-        List<com.example.sim_info.IccId> _iccIdList = new ArrayList<>();
+        List<com.example.sim_sms_call_info.IccId> _iccIdList = new ArrayList<>();
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             for (int i = 0; i < tm2.getCallCapablePhoneAccounts().size(); i++) {
-                _iccIdList.add(new com.example.sim_info.IccId(i, tm2.getCallCapablePhoneAccounts().get(i).getId()));
+                _iccIdList.add(new com.example.sim_sms_call_info.IccId(i, tm2.getCallCapablePhoneAccounts().get(i).getId()));
             }
         }
 

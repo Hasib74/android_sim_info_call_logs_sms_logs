@@ -1,4 +1,4 @@
-package com.example.sim_info_example;
+package com.example.sim_sms_call_info_example;
 
 import io.flutter.embedding.android.FlutterActivity;
 

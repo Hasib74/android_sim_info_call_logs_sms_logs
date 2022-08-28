@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  const MethodChannel channel = MethodChannel('sim_info');
+  const MethodChannel channel = MethodChannel('sim_sms_call_info');
 
   TestWidgetsFlutterBinding.ensureInitialized();
 

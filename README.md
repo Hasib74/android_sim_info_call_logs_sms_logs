@@ -1,4 +1,4 @@
-# sim_info
+# sim_sms_call_info
 
 A new flutter plugin project.
 

@@ -1,4 +1,4 @@
-group 'com.example.sim_info'
+group 'com.example.sim_sms_call_info'
 version '1.0'
 
 buildscript {

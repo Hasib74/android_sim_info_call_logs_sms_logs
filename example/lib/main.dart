@@ -1,7 +1,10 @@
+import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
-import 'package:sim_info/MonuSimInfo.dart';
+import 'package:sim_sms_call_info/MonuSimInfo.dart';
+import 'package:sim_sms_call_info/methodChannel/MonuSimInfo/Model/SimInfo.dart';
+import 'package:sim_sms_call_info/methodChannel/MonuSimInfo/Model/SmsInfoModel.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,21 +24,9 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    // MonuSimInfo.getSMSInfo();
-
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
+    getSimInfo();
+    getSmsLogs();
+    getCallLogs();
   }
 
   @override
@@ -53,5 +44,18 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
+  }
+
+  Future<SimInfo> getSimInfo() async {
+    return MonuSimInfo.getSimInfo();
+  }
+
+  Future<SmsInfoModel> getSmsLogs() async {
+    return MonuSimInfo.getSMSInfo();
+
+  }
+
+  Future<Iterable<CallLogEntry>> getCallLogs()  async{
+    return  await MonuSimInfo.getCallLogs();
   }
 }

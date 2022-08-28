@@ -1,6 +1,6 @@
-# sim_info_example
+# sim_sms_call_info_example
 
-Demonstrates how to use the sim_info plugin.
+Demonstrates how to use the sim_sms_call_info plugin.
 
 ## Getting Started
 
